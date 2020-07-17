@@ -1,0 +1,2 @@
+# SophieHTTP
+An HTTP library
