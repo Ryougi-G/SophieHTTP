@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SophieHTTP", "SophieHTTP\SophieHTTP.csproj", "{651220FF-BD5C-4074-89F5-A25345424E0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{651220FF-BD5C-4074-89F5-A25345424E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{651220FF-BD5C-4074-89F5-A25345424E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{651220FF-BD5C-4074-89F5-A25345424E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{651220FF-BD5C-4074-89F5-A25345424E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BA79041-151A-436B-A6D6-417B50C810B3}
+	EndGlobalSection
+EndGlobal
