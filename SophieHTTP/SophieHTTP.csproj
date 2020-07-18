@@ -42,9 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="HTTPResolve\CommonHeader.cs" />
     <Compile Include="HTTPResolve\HTTPHeader.cs" />
+    <Compile Include="HTTPResolve\HTTPMethod.cs" />
+    <Compile Include="HTTPResolve\HTTPRequest.cs" />
     <Compile Include="HTTPResolve\TestHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HTTPResolve\ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
