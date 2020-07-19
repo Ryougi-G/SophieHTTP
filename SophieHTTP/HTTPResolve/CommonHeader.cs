@@ -8,7 +8,7 @@ namespace SophieHTTP.HTTPResolve
 {
     class CommonHeader : HTTPHeader
     {
-        public override object Value {
+        public override Object Value {
             get
             {
                 return HeaderValue;

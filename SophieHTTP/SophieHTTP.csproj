@@ -44,8 +44,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="HTTPResolve\CommonHeader.cs" />
     <Compile Include="HTTPResolve\HTTPHeader.cs" />
-    <Compile Include="HTTPResolve\HTTPMethod.cs" />
     <Compile Include="HTTPResolve\HTTPRequest.cs" />
+    <Compile Include="HTTPResolve\HTTPUtils.cs" />
     <Compile Include="HTTPResolve\TestHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
