@@ -9,5 +9,9 @@ namespace SophieHTTP.HTTPResolve
 {
     class HTTPResponse
     {
+        string Version;
+        HTTPStatusCode StatusCode;
+        List<HTTPHeader> Headers;
+        string Content;
     }
 }

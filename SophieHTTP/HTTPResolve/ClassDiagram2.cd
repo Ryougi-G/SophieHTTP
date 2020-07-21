@@ -22,23 +22,30 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SophieHTTP.HTTPResolve.HTTPResponse">
-    <Position X="7.25" Y="1" Width="1.5" />
+    <Position X="6.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAgAAAAAAAAAAAAAACAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>HTTPResolve\HTTPResponse.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SophieHTTP.HTTPResolve.HTTPMethod">
-    <Position X="10.5" Y="0.75" Width="1.5" />
+    <Position X="8.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAYAAACAAAEAQAAAAAAAiAABAAgAAAAAEACAAAAAAA=</HashCode>
       <FileName>HTTPResolve\HTTPUtils.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SophieHTTP.HTTPResolve.HTTPVersion">
-    <Position X="12" Y="0.75" Width="1.5" />
+    <Position X="9.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HTTPResolve\HTTPUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SophieHTTP.HTTPResolve.HTTPStatusCode">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KGEOSAAJCBAEAgAwACEgBABAgJkAAQQFADQlIEAGAAI=</HashCode>
       <FileName>HTTPResolve\HTTPUtils.cs</FileName>
     </TypeIdentifier>
   </Class>
