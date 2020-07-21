@@ -14,13 +14,6 @@
       <FileName>HTTPResolve\HTTPHeader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SophieHTTP.HTTPResolve.TestHeader" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HTTPResolve\TestHeader.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SophieHTTP.HTTPResolve.HTTPRequest">
     <Position X="4.75" Y="1" Width="1.5" />
     <TypeIdentifier>
