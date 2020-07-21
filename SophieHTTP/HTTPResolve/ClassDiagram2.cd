@@ -3,14 +3,14 @@
   <Class Name="SophieHTTP.HTTPResolve.CommonHeader" Collapsed="true">
     <Position X="2.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAABAAAAAAgAAAAAAA=</HashCode>
       <FileName>HTTPResolve\CommonHeader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SophieHTTP.HTTPResolve.HTTPHeader" Collapsed="true">
     <Position X="1.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAIAAAAAAAAAABAAAAAAgAAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAUAAIAAAAAAAAAABAAAAAAgAAQAAAA=</HashCode>
       <FileName>HTTPResolve\HTTPHeader.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -19,6 +19,34 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>HTTPResolve\TestHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SophieHTTP.HTTPResolve.HTTPRequest">
+    <Position X="4.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAgAEAAAAAAAgAAAACAAAABAACIAAAAAACAA=</HashCode>
+      <FileName>HTTPResolve\HTTPRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SophieHTTP.HTTPResolve.HTTPResponse">
+    <Position X="7.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HTTPResolve\HTTPResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SophieHTTP.HTTPResolve.HTTPMethod">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAYAAACAAAEAQAAAAAAAiAABAAgAAAAAEACAAAAAAA=</HashCode>
+      <FileName>HTTPResolve\HTTPUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SophieHTTP.HTTPResolve.HTTPVersion">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HTTPResolve\HTTPUtils.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Microsoft YaHei UI" Size="9" />

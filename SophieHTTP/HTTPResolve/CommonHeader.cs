@@ -8,6 +8,11 @@ namespace SophieHTTP.HTTPResolve
 {
     class CommonHeader : HTTPHeader
     {
+        public CommonHeader(string key,Object val)
+        {
+            HeaderKey = key;
+            Value = val;
+        }
         public override Object Value {
             get
             {
@@ -15,8 +20,19 @@ namespace SophieHTTP.HTTPResolve
             }
             set
             {
-                HeaderValue = value;
+                if(value is string)
+                {
+                    HeaderValue = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
+        }
+        public override string GetValueString()
+        {
+            return (string)Value;
         }
         public override string getHeaderString()
         {

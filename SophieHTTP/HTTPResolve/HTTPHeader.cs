@@ -10,6 +10,16 @@ namespace SophieHTTP.HTTPResolve
     {
         protected string HeaderKey;
         protected Object HeaderValue;
+        public HTTPHeader(string key,Object val)
+        {
+            HeaderKey = key;
+            HeaderValue = val;
+        }
+        public HTTPHeader()
+        {
+            HeaderValue = null;
+            HeaderKey = null;
+        }
         public virtual string Key
         {
             get
@@ -32,6 +42,7 @@ namespace SophieHTTP.HTTPResolve
                 HeaderValue = value;
             }
         }
+        public abstract string GetValueString();
         public abstract string getHeaderString();
     }
 }
