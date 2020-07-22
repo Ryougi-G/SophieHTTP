@@ -12,14 +12,22 @@ namespace SophieHTTP.HTTPResolve
         public Uri Url;
         public string Version;
         private List<HTTPHeader> Headers;
-        string Content="";
-        public HTTPRequest(HTTPMethod method,Uri uri,string version,List<HTTPHeader> headers,string content="")
+        public byte[] Content;
+        public HTTPRequest(HTTPMethod method,Uri uri,string version,List<HTTPHeader> headers,byte[] content=null)
         {
             Method = method;
             this.Url = uri;
             Version = version;
             Headers = headers;
             Content = content;
+        }
+        public HTTPRequest()
+        {
+            Method = null;
+            Url = null;
+            Version = null;
+            Headers = new List<HTTPHeader>();
+            Content = null;
         }
         public HTTPHeader FindHeader(string key)
         {
@@ -47,7 +55,7 @@ namespace SophieHTTP.HTTPResolve
             }
             return null;
         }
-        public string GetRawString()
+        public byte[] GetRawByte()
         {
             string result = "";
             result += Method.MethodName + " " +Url.ToString()+" "+ Version+"\r\n";
@@ -56,8 +64,17 @@ namespace SophieHTTP.HTTPResolve
                 result += header.getHeaderString() + "\r\n";
             }
             result += "\r\n";
-            result += Content;
-            return result;
+            byte[] bresult = new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
+            byte[] tr = Encoding.ASCII.GetBytes(result);
+            for(int i = 0; i < tr.Length; i++)
+            {
+                bresult[i] = tr[i];
+            }
+            for(int i=tr.Length;i< Encoding.ASCII.GetByteCount(result) + Content.Length; i++)
+            {
+                bresult[i] = Content[i];
+            }
+            return bresult;
         }
     }
 }

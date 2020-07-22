@@ -45,6 +45,7 @@
     <Compile Include="HTTPResolve\CommonHeader.cs" />
     <Compile Include="HTTPResolve\HTTPHeader.cs" />
     <Compile Include="HTTPResolve\HTTPRequest.cs" />
+    <Compile Include="HTTPResolve\HTTPResolve.cs" />
     <Compile Include="HTTPResolve\HTTPResponse.cs" />
     <Compile Include="HTTPResolve\HTTPUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
