@@ -4,45 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SophieHTTP.HTTPResolve
+namespace SophieHTTP
 {
-    abstract class HTTPHeader
+    namespace HTTPResolve
     {
-        protected string HeaderKey;
-        protected Object HeaderValue;
-        public HTTPHeader(string key,Object val)
+       public abstract class HTTPHeader
         {
-            HeaderKey = key;
-            HeaderValue = val;
-        }
-        public HTTPHeader()
-        {
-            HeaderValue = null;
-            HeaderKey = null;
-        }
-        public virtual string Key
-        {
-            get
+            protected string HeaderKey;
+            protected Object HeaderValue;
+            public HTTPHeader(string key, Object val)
             {
-                return Key;
+                HeaderKey = key;
+                HeaderValue = val;
             }
-            set
+            public HTTPHeader()
             {
-                HeaderKey = value;
+                HeaderValue = null;
+                HeaderKey = null;
             }
+            public virtual string Key
+            {
+                get
+                {
+                    return Key;
+                }
+                set
+                {
+                    HeaderKey = value;
+                }
+            }
+            public virtual Object Value
+            {
+                get
+                {
+                    return HeaderValue;
+                }
+                set
+                {
+                    HeaderValue = value;
+                }
+            }
+            public abstract string GetValueString();
+            public abstract string getHeaderString();
         }
-        public virtual Object Value
-        {
-            get
-            {
-                return HeaderValue;
-            }
-            set
-            {
-                HeaderValue = value;
-            }
-        }
-        public abstract string GetValueString();
-        public abstract string getHeaderString();
     }
+    
 }

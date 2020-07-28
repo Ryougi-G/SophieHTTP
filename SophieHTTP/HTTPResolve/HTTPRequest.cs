@@ -4,77 +4,82 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SophieHTTP.HTTPResolve
+namespace SophieHTTP
 {
-    class HTTPRequest
+    namespace HTTPResolve
     {
-        public HTTPMethod Method;
-        public Uri Url;
-        public string Version;
-        private List<HTTPHeader> Headers;
-        public byte[] Content;
-        public HTTPRequest(HTTPMethod method,Uri uri,string version,List<HTTPHeader> headers,byte[] content=null)
+        public class HTTPRequest
         {
-            Method = method;
-            this.Url = uri;
-            Version = version;
-            Headers = headers;
-            Content = content;
-        }
-        public HTTPRequest()
-        {
-            Method = null;
-            Url = null;
-            Version = null;
-            Headers = new List<HTTPHeader>();
-            Content = null;
-        }
-        public HTTPHeader FindHeader(string key)
-        {
-            foreach(HTTPHeader current in Headers)
+            public HTTPMethod Method;
+            public Uri Url;
+            public string Version;
+            private List<HTTPHeader> Headers;
+            public byte[] Content;
+            public HTTPRequest(HTTPMethod method, Uri uri, string version, List<HTTPHeader> headers, byte[] content = null)
             {
-                if (current.Key == key)
-                    return current;
+                Method = method;
+                this.Url = uri;
+                Version = version;
+                Headers = headers;
+                Content = content;
             }
-            return null;
-        }
-        public void AddHeader(HTTPHeader header)
-        {
-            Headers.Add(header);
-        }
-        public HTTPHeader RemoveHeader(string key)
-        {
-            foreach (HTTPHeader current in Headers)
+            public HTTPRequest()
             {
-                if (current.Key == key)
+                Method = null;
+                Url = null;
+                Version = null;
+                Headers = new List<HTTPHeader>();
+                Content = null;
+            }
+            public HTTPHeader FindHeader(string key)
+            {
+                foreach (HTTPHeader current in Headers)
                 {
-                    HTTPHeader t = current;
-                    Headers.Remove(current);
-                    return t;   
-                } 
+                    if (current.Key == key)
+                        return current;
+                }
+                return null;
             }
-            return null;
-        }
-        public byte[] GetRawByte()
-        {
-            string result = "";
-            result += Method.MethodName + " " +Url.ToString()+" "+ Version+"\r\n";
-            foreach(HTTPHeader header in Headers)
+            public void AddHeader(HTTPHeader header)
             {
-                result += header.getHeaderString() + "\r\n";
+                Headers.Add(header);
             }
-            result += "\r\n";
-            byte[] bresult = new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
-            byte[] tr = Encoding.ASCII.GetBytes(result);
-            for(int i = 0; i < tr.Length; i++)
+            public HTTPHeader RemoveHeader(string key)
             {
-                bresult[i] = tr[i];
+                foreach (HTTPHeader current in Headers)
+                {
+                    if (current.Key == key)
+                    {
+                        HTTPHeader t = current;
+                        Headers.Remove(current);
+                        return t;
+                    }
+                }
+                return null;
             }
-            for(int i=tr.Length;i< Encoding.ASCII.GetByteCount(result) + Content.Length; i++)
+            public byte[] GetRawByte()
             {
-                bresult[i] = Content[i];
+                string result = "";
+                result += Method.MethodName + " " + Url.ToString() + " " + Version + "\r\n";
+                foreach (HTTPHeader header in Headers)
+                {
+                    result += header.getHeaderString() + "\r\n";
+                }
+                result += "\r\n";
+                byte[] bresult = new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
+                byte[] tr = Encoding.ASCII.GetBytes(result);
+                for (int i = 0; i < tr.Length; i++)
+                {
+                    bresult[i] = tr[i];
+                }
+                if (Content != null)
+                    for (int i = tr.Length; i < Encoding.ASCII.GetByteCount(result) + Content.Length; i++)
+                    {
+                        bresult[i] = Content[i];
+                    }
+                return bresult;
             }
-            return bresult;
         }
     }
+    
 }

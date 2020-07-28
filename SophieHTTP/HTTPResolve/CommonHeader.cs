@@ -4,39 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SophieHTTP.HTTPResolve
+namespace SophieHTTP
 {
-    class CommonHeader : HTTPHeader
+    namespace HTTPResolve
     {
-        public CommonHeader(string key,Object val)
+        class CommonHeader : HTTPHeader
         {
-            HeaderKey = key;
-            Value = val;
-        }
-        public override Object Value {
-            get
+            public CommonHeader(string key, Object val)
             {
-                return HeaderValue;
+                HeaderKey = key;
+                Value = val;
             }
-            set
+            public override Object Value
             {
-                if(value is string)
+                get
                 {
-                    HeaderValue = value;
+                    return HeaderValue;
                 }
-                else
+                set
                 {
-                    throw new ArgumentException();
+                    if (value is string)
+                    {
+                        HeaderValue = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException();
+                    }
                 }
             }
-        }
-        public override string GetValueString()
-        {
-            return (string)Value;
-        }
-        public override string getHeaderString()
-        {
-            return Key + ":" + (string)HeaderValue;
+            public override string GetValueString()
+            {
+                return (string)Value;
+            }
+            public override string getHeaderString()
+            {
+                return Key + ":" + (string)HeaderValue;
+            }
         }
     }
+    
 }

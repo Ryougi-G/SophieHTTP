@@ -5,66 +5,71 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SophieHTTP.HTTPResolve
+namespace SophieHTTP
 {
-    class HTTPResponse
+    namespace HTTPResolve
     {
-        string Version;
-        HTTPStatusCode StatusCode;
-        List<HTTPHeader> Headers;
-        byte[] Content;
-        public HTTPResponse(string ver,HTTPStatusCode code,List<HTTPHeader> headers)
+        public class HTTPResponse
         {
-            Version = ver;
-            StatusCode = code;
-            Headers = headers;
-        }
-        public HTTPHeader FindHeader(string key)
-        {
-            foreach (HTTPHeader current in Headers)
+            string Version;
+            HTTPStatusCode StatusCode;
+            List<HTTPHeader> Headers;
+            byte[] Content;
+            public HTTPResponse(string ver, HTTPStatusCode code, List<HTTPHeader> headers)
             {
-                if (current.Key == key)
-                    return current;
+                Version = ver;
+                StatusCode = code;
+                Headers = headers;
             }
-            return null;
-        }
-        public void AddHeader(HTTPHeader header)
-        {
-            Headers.Add(header);
-        }
-        public HTTPHeader RemoveHeader(string key)
-        {
-            foreach (HTTPHeader current in Headers)
+            public HTTPHeader FindHeader(string key)
             {
-                if (current.Key == key)
+                foreach (HTTPHeader current in Headers)
                 {
-                    HTTPHeader t = current;
-                    Headers.Remove(current);
-                    return t;
+                    if (current.Key == key)
+                        return current;
                 }
+                return null;
             }
-            return null;
-        }
-        public byte[] GetRawString()
-        {
-            string result = "";
-            result += Version + " " + StatusCode.Code + " " + StatusCode.Message + "\r\n";
-            foreach (HTTPHeader header in Headers)
+            public void AddHeader(HTTPHeader header)
             {
-                result += header.getHeaderString() + "\r\n";
+                Headers.Add(header);
             }
-            result += "\r\n";
-            byte[] bresult = new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
-            byte[] tr = Encoding.ASCII.GetBytes(result);
-            for (int i = 0; i < tr.Length; i++)
+            public HTTPHeader RemoveHeader(string key)
             {
-                bresult[i] = tr[i];
+                foreach (HTTPHeader current in Headers)
+                {
+                    if (current.Key == key)
+                    {
+                        HTTPHeader t = current;
+                        Headers.Remove(current);
+                        return t;
+                    }
+                }
+                return null;
             }
-            for (int i = tr.Length; i < Encoding.ASCII.GetByteCount(result) + Content.Length; i++)
+            public byte[] GetRawString()
             {
-                bresult[i] = Content[i];
+                string result = "";
+                result += Version + " " + StatusCode.Code + " " + StatusCode.Message + "\r\n";
+                foreach (HTTPHeader header in Headers)
+                {
+                    result += header.getHeaderString() + "\r\n";
+                }
+                result += "\r\n";
+                byte[] bresult = new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
+                byte[] tr = Encoding.ASCII.GetBytes(result);
+                for (int i = 0; i < tr.Length; i++)
+                {
+                    bresult[i] = tr[i];
+                }
+                if (Content != null)
+                    for (int i = tr.Length; i < Encoding.ASCII.GetByteCount(result) + Content.Length; i++)
+                    {
+                        bresult[i] = Content[i];
+                    }
+                return bresult;
             }
-            return bresult;
         }
     }
+    
 }
