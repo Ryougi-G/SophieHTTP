@@ -31,6 +31,17 @@ namespace SophieHTTP
                 Headers = new List<HTTPHeader>();
                 Content = null;
             }
+            public List<HTTPHeader> HTTPHeaders
+            {
+                get
+                {
+                    return Headers;
+                }
+                set
+                {
+                    Headers = value;
+                }
+            }
             public HTTPHeader FindHeader(string key)
             {
                 foreach (HTTPHeader current in Headers)
@@ -66,7 +77,16 @@ namespace SophieHTTP
                     result += header.getHeaderString() + "\r\n";
                 }
                 result += "\r\n";
-                byte[] bresult = new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
+                byte[] bresult;
+                if (Content != null)
+                {
+                    bresult= new byte[Encoding.ASCII.GetByteCount(result) + Content.Length];
+                }
+                else
+                {
+                    bresult = new byte[Encoding.ASCII.GetByteCount(result)];
+                }
+                 
                 byte[] tr = Encoding.ASCII.GetBytes(result);
                 for (int i = 0; i < tr.Length; i++)
                 {

@@ -11,37 +11,49 @@ namespace SophieHTTP
     {
         public static class HTTPResolve
         {
-            static HTTPRequest ResolveHTTPRequest(byte[] rawBytes)
+            public static HTTPRequest ResolveHTTPRequest(byte[] rawBytes)
             {
                 HTTPRequest result = new HTTPRequest();
+
                 List<string> rawHeaders = new List<string>();
+
                 int pos = 0;
+
                 string ht = "";
+
                 while (pos < rawBytes.Length)
                 {
-                    byte[] tb = new byte[2];
-                    tb[0] = rawBytes[pos];
-                    tb[1] = rawBytes[pos + 1];
-                    pos += 2;
-                    string t = Encoding.ASCII.GetString(tb);
-                    if (t == "\r\n")
+                    byte tb=rawBytes[pos];
+
+                    if (tb == '\r')
                     {
-                        if (ht == "")
+                        if (rawBytes[pos+1]=='\n')
                         {
-                            break;
+                            rawHeaders.Add(ht);
+                            ht = "";
+                            pos += 2;
+                            continue;
                         }
-                        rawHeaders.Add(ht);
-                        ht = "";
+                        
                     }
+                    ht += (char)tb;
+
+                    pos += 1;
                 }
                 string[] firstLine = rawHeaders[0].Split(' ');
+
                 rawHeaders.Remove(rawHeaders[0]);
+
                 result.Method = new HTTPMethod(firstLine[0]);
-                result.Url = new Uri(firstLine[1]);
+
+                bool bre = Uri.TryCreate(firstLine[1], UriKind.RelativeOrAbsolute, out result.Url);
+
                 result.Version = firstLine[2];
+
                 if (rawBytes.Length >= pos + 1)
                 {
                     result.Content = new byte[rawBytes.Length - pos];
+
                     for (int i = pos; i < rawBytes.Length; i++)
                     {
                         result.Content[i - pos] = rawBytes[i];
@@ -55,7 +67,9 @@ namespace SophieHTTP
                 foreach (string s in rawHeaders)
                 {
                     string key = "", value = "";
+
                     int i = 0;
+
                     while (s[i] != ':')
                     {
                         if (s[i] != ' ')
@@ -63,7 +77,9 @@ namespace SophieHTTP
                         i++;
                     }
                     i++;
+
                     bool flag = false;
+
                     while (i < s.Length)
                     {
                         if (s[i] == ' ' && !flag)
@@ -77,78 +93,42 @@ namespace SophieHTTP
                         }
                         i++;
                     }
+
                     result.AddHeader(new CommonHeader(key, value));
                 }
                 return result;
             }
-            static HTTPRequest ResolveHTTPRequest(Stream rawStream)
+            public static HTTPResponse ResolveHTTPResponse(byte[] rawBytes)
             {
-                HTTPRequest result = new HTTPRequest();
-                List<string> rawHeaders = new List<string>();
-                using (BinaryReader bReader = new BinaryReader(rawStream))
-                {
-                    byte[] bt = new byte[1];
-                    string st = "";
-                    while (rawStream.CanRead)
-                    {
-                        bt[0] = bReader.ReadByte();
-                        st += Encoding.ASCII.GetString(bt);
-                        if (st == "\r\n")
-                        {
-                            break;
-                        }
-                        else if (st.Contains("\r\n"))
-                        {
-                            st = st.Remove(st.Length - 2);
-                            rawHeaders.Add(st);
-                            st = "";
-                        }
-                    }
-                    foreach (string s in rawHeaders)
-                    {
-                        string key = "", value = "";
-                        int i = 0;
-                        while (s[i] != ':')
-                        {
-                            if (s[i] != ' ')
-                                key += s[i];
-                            i++;
-                        }
-                        i++;
-                        bool flag = false;
-                        while (i < s.Length)
-                        {
-                            if (s[i] == ' ' && !flag)
-                            {
+                HTTPResponse result=new HTTPResponse()
 
-                            }
-                            else
-                            {
-                                flag = true;
-                                value += s[i];
-                            }
-                            i++;
-                        }
-                        result.AddHeader(new CommonHeader(key, value));
-                    }
-                    HTTPHeader ContentLength = result.FindHeader("Content-length");
-                    if (ContentLength != null)
+                List<string> rawHeaders = new List<string>();
+
+                int pos = 0;
+
+                string ht = "";
+
+                while (pos < rawBytes.Length)
+                {
+                    byte tb = rawBytes[pos];
+
+                    if (tb == '\r')
                     {
-                        int length = Convert.ToInt32((string)ContentLength.Value);
-                        byte[] content = new byte[length];
-                        for (int i = 0; i < length; i++)
+                        if (rawBytes[pos + 1] == '\n')
                         {
-                            content[i] = bReader.ReadByte();
+                            rawHeaders.Add(ht);
+                            ht = "";
+                            pos += 2;
+                            continue;
                         }
-                        result.Content = content;
+
                     }
-                    else
-                    {
-                        result.Content = null;
-                    }
+                    ht += (char)tb;
+
+                    pos += 1;
                 }
-                return result;
             }
+            
         }
     }
     

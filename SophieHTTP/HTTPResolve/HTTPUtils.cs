@@ -22,8 +22,14 @@ namespace SophieHTTP
             private string HTTPMethodName;
             public string MethodName
             {
-                get;
-                set;
+                get
+                {
+                    return HTTPMethodName;
+                }
+                set
+                {
+                    HTTPMethodName = value;
+                }
             }
             static HTTPMethod()
             {

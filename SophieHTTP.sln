@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SophieHTTP", "SophieHTTP\SophieHTTP.csproj", "{651220FF-BD5C-4074-89F5-A25345424E0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6B4EE7DF-40C1-43FF-B881-40D96BED5926}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{651220FF-BD5C-4074-89F5-A25345424E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{651220FF-BD5C-4074-89F5-A25345424E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{651220FF-BD5C-4074-89F5-A25345424E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4EE7DF-40C1-43FF-B881-40D96BED5926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4EE7DF-40C1-43FF-B881-40D96BED5926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4EE7DF-40C1-43FF-B881-40D96BED5926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4EE7DF-40C1-43FF-B881-40D96BED5926}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

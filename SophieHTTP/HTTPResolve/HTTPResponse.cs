@@ -21,6 +21,17 @@ namespace SophieHTTP
                 StatusCode = code;
                 Headers = headers;
             }
+            public List<HTTPHeader> HTTPHeaders
+            {
+                get
+                {
+                    return Headers;
+                }
+                set
+                {
+                    Headers = value;
+                }
+            }
             public HTTPHeader FindHeader(string key)
             {
                 foreach (HTTPHeader current in Headers)

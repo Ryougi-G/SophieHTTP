@@ -26,7 +26,7 @@ namespace SophieHTTP
             {
                 get
                 {
-                    return Key;
+                    return HeaderKey;
                 }
                 set
                 {
