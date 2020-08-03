@@ -27,41 +27,7 @@ namespace ConsoleApp1
                     writer.WriteLine("Header:" + header.getHeaderString());
                 }
             }
-            /*
-            TcpListener server = new TcpListener(IPAddress.Any, 4444);
-            server.Start();
-            worker ws = new worker();
-            while (true)
-            {
-                TcpClient client = server.AcceptTcpClient();
-                string res = "";
-                using(StreamReader reader=new StreamReader(client.GetStream()))
-                {
-                    while (true)
-                    {
-                        string t;
-                        t = reader.ReadLine();
-                        if (t == "")
-                        {
-                            res += "\r\n";
-                            break;
-                        }
-                        else
-                        {
-                            res += t + "\r\n";
-                        }
-                    }
-                    
-                }
-                HTTPRequest request = HTTPResolve.ResolveHTTPRequest(Encoding.ASCII.GetBytes(res));
-                //TcpClient remoteServer = new TcpClient();
-                //remoteServer.Connect(request.Url.Host, request.Url.Port);
-                Console.WriteLine(res);
-                //Thread t = new Thread(new ParameterizedThreadStart(ws.work));
-                //t.Start(client);
             
-            }
-            */
         }
         void deal(TcpClient client)
         {

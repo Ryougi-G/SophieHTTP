@@ -29,6 +29,10 @@ namespace SophieHTTP
                     {
                         if (rawBytes[pos+1]=='\n')
                         {
+                            if (ht == "")
+                            {
+                                break;
+                            }
                             rawHeaders.Add(ht);
                             ht = "";
                             pos += 2;
@@ -100,7 +104,7 @@ namespace SophieHTTP
             }
             public static HTTPResponse ResolveHTTPResponse(byte[] rawBytes)
             {
-                HTTPResponse result=new HTTPResponse()
+                HTTPResponse result = new HTTPResponse();
 
                 List<string> rawHeaders = new List<string>();
 
@@ -116,6 +120,10 @@ namespace SophieHTTP
                     {
                         if (rawBytes[pos + 1] == '\n')
                         {
+                            if (ht == "")
+                            {
+                                break;
+                            }
                             rawHeaders.Add(ht);
                             ht = "";
                             pos += 2;
@@ -127,8 +135,50 @@ namespace SophieHTTP
 
                     pos += 1;
                 }
+
+                string[] firstline = rawHeaders[0].Split(' ');
+
+                rawHeaders.Remove(rawHeaders[0]);
+
+                result.Version = firstline[0];
+
+                result.StatusCode = new HTTPStatusCode(Convert.ToInt32(firstline[1]), firstline[2]);
+
+                foreach (string s in rawHeaders)
+                {
+                    string key = "", value = "";
+
+                    int i = 0;
+
+                    while (s[i] != ':')
+                    {
+                        if (s[i] != ' ')
+                            key += s[i];
+                        i++;
+                    }
+                    i++;
+
+                    bool flag = false;
+
+                    while (i < s.Length)
+                    {
+                        if (s[i] == ' ' && !flag)
+                        {
+
+                        }
+                        else
+                        {
+                            flag = true;
+                            value += s[i];
+                        }
+                        i++;
+                    }
+                    result.AddHeader(new CommonHeader(key, value));
+                }
+
+                return result;
+
             }
-            
         }
     }
     
