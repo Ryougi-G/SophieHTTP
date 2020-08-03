@@ -15,19 +15,39 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string s = File.ReadAllText("req.txt");
-            HTTPRequest req = HTTPResolve.ResolveHTTPRequest(Encoding.ASCII.GetBytes(s));
-            using (StreamWriter writer = new StreamWriter(new FileStream("Res.txt", FileMode.OpenOrCreate)))
+            TcpListener server = new TcpListener(IPAddress.Any,4444);
+            server.Start();
+            TcpClient client = server.AcceptTcpClient();
+            HTTPRequest request;
+            using(BinaryReader breader=new BinaryReader(client.GetStream()))
             {
-                writer.WriteLine("HTTPVer:" + req.Version);
-                writer.WriteLine("Method:" + req.Method.MethodName);
-                writer.WriteLine("URI:" + req.Url.OriginalString);
-                foreach(HTTPHeader header in req.HTTPHeaders)
+                byte[] b=new byte[1];
+                string ht="";
+                List<string> rawHeaders=new List<string>();
+                while (client.GetStream().CanRead&& client.GetStream().DataAvailable)
                 {
-                    writer.WriteLine("Header:" + header.getHeaderString());
+                        b[0] = breader.ReadByte();
+                        ht += Encoding.ASCII.GetString(b);
+                        
+                        if (ht.Contains("\r\n"))
+                        {
+                            rawHeaders.Add(ht);
+                            if (ht == "\r\n")
+                            {
+                                break;
+                            }
+                            ht = "";
+                        }
                 }
+                string sr = "";
+                foreach(string st in rawHeaders)
+                {
+                    sr += st;
+                }
+                request = HTTPResolve.ResolveHTTPRequest(Encoding.ASCII.GetBytes(sr));
             }
-            
+            Console.WriteLine("Method:" + request.Method.MethodName + " Url:" + request.Url.OriginalString + " Version" + request.Version);
+            Console.ReadLine();
         }
         void deal(TcpClient client)
         {
