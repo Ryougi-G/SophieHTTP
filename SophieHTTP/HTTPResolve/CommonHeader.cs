@@ -8,7 +8,7 @@ namespace SophieHTTP
 {
     namespace HTTPResolve
     {
-        class CommonHeader : HTTPHeader
+        public class CommonHeader : HTTPHeader
         {
             public CommonHeader(string key, Object val)
             {
