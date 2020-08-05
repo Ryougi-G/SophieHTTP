@@ -92,7 +92,7 @@ namespace SophieHTTP
 
                 return null;
             }
-            public byte[] GetRawByte()
+            public byte[] GetRawBytes()
             {
 
                 string result = "";

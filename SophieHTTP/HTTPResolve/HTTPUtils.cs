@@ -10,15 +10,15 @@ namespace SophieHTTP
     {
         public class HTTPMethod
         {
-            static HTTPMethod GET;
-            static HTTPMethod POST;
-            static HTTPMethod PUT;
-            static HTTPMethod HEAD;
-            static HTTPMethod DELETE;
-            static HTTPMethod CONNECT;
-            static HTTPMethod OPTIONS;
-            static HTTPMethod TRACE;
-            static HTTPMethod PATCH;
+            public static HTTPMethod GET;
+            public static HTTPMethod POST;
+            public static HTTPMethod PUT;
+            public static HTTPMethod HEAD;
+            public static HTTPMethod DELETE;
+            public static HTTPMethod CONNECT;
+            public static HTTPMethod OPTIONS;
+            public static HTTPMethod TRACE;
+            public static HTTPMethod PATCH;
             private string HTTPMethodName;
             public string MethodName
             {

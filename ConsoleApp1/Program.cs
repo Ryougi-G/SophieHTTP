@@ -63,11 +63,38 @@ namespace ConsoleApp1
                 }
                 request = HTTPResolve.ResolveHTTPRequest(Encoding.ASCII.GetBytes(sr));
             }
+            if (request.Method.MethodName == HTTPMethod.CONNECT.MethodName)
+            {
+                request.Url = new Uri("https://" + request.Url.OriginalString + "/");
+                IPHostEntry entrys= Dns.GetHostEntry(request.Url.Host);
+                TcpClient remoteServer=new TcpClient();
+                bool flag = false;
+                foreach(IPAddress adr in entrys.AddressList)
+                {
+                    try
+                    {
+                        remoteServer.Connect(adr, request.Url.Port);
+                    }catch(SocketException ex)
+                    {
+                        continue;
+                    }
+                    flag = true;
+                    break;
+                }
+                if (!flag)
+                    return;
+                if (client.Connected)
+                {
+                    client.Client.Send(new HTTPResponse(request.Version, HTTPStatusCode.ConnectionEstablished, new List<HTTPHeader>()).GetRawBytes());
+                }
+            }
+            /*
             Console.WriteLine("Method:" + request.Method.MethodName + " Url:" + request.Url.OriginalString + " Version：" + request.Version);
             foreach (CommonHeader header in request.HTTPHeaders)
             {
                 Console.WriteLine("Key:" + header.Key + " Value:" + header.Value);
             }
+            */
         }
     }
 }
