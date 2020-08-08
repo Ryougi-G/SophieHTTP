@@ -98,6 +98,7 @@ namespace ConsoleApp1
                         NetworkStream clientStream = client.GetStream();
                         while (client.Connected)
                         {
+                            Thread.Sleep(1);
                             if (serverStream.CanRead && clientStream.CanRead && serverStream.CanWrite && clientStream.CanWrite)
                             {
                                 try
