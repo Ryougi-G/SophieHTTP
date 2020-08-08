@@ -10,15 +10,15 @@ namespace SophieHTTP
     {
         public class HTTPMethod
         {
-            static HTTPMethod GET;
-            static HTTPMethod POST;
-            static HTTPMethod PUT;
-            static HTTPMethod HEAD;
-            static HTTPMethod DELETE;
-            static HTTPMethod CONNECT;
-            static HTTPMethod OPTIONS;
-            static HTTPMethod TRACE;
-            static HTTPMethod PATCH;
+            public static HTTPMethod GET;
+            public static HTTPMethod POST;
+            public static HTTPMethod PUT;
+            public static HTTPMethod HEAD;
+            public static HTTPMethod DELETE;
+            public static HTTPMethod CONNECT;
+            public static HTTPMethod OPTIONS;
+            public static HTTPMethod TRACE;
+            public static HTTPMethod PATCH;
             private string HTTPMethodName;
             public string MethodName
             {
@@ -48,12 +48,12 @@ namespace SophieHTTP
                 this.HTTPMethodName = methodName;
             }
         }
-        static class HTTPVersion
+        public static class HTTPVersion
         {
-            static string HTTP09 = "HTTP/0.9";
-            static string HTTP10 = "HTTP/1.0";
-            static string HTTP11 = "HTTP/1.1";
-            static string HTTP20 = "HTTP/2.0";
+            public static string HTTP09 = "HTTP/0.9";
+            public static string HTTP10 = "HTTP/1.0";
+            public static string HTTP11 = "HTTP/1.1";
+            public static string HTTP20 = "HTTP/2.0";
         }
         public class HTTPStatusCode
         {

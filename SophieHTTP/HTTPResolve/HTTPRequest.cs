@@ -92,7 +92,7 @@ namespace SophieHTTP
 
                 return null;
             }
-            public byte[] GetRawByte()
+            public byte[] GetRawBytes()
             {
 
                 string result = "";
@@ -129,7 +129,7 @@ namespace SophieHTTP
                     for (int i = tr.Length; i < Encoding.ASCII.GetByteCount(result) + Content.Length; i++)
                     {
 
-                        bresult[i] = Content[i];
+                        bresult[i] = Content[i-tr.Length];
 
                     }
 
