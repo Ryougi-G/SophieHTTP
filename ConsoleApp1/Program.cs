@@ -9,6 +9,7 @@ using SophieHTTP.HTTPResolve;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
+using SophieHTTP.ProxyService;
 
 namespace ConsoleApp1
 {
@@ -16,16 +17,11 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            TcpListener server = new TcpListener(IPAddress.Any,4444);
+            LigthHTTPProxyServer server = new LigthHTTPProxyServer(IPAddress.Any, 4444);
             server.Start();
-            worker wk = new worker();
             while (true)
             {
-                TcpClient client = server.AcceptTcpClient();
-               // new worker().work(client);
-                Thread th = new Thread(new ParameterizedThreadStart(wk.work));
-                th.IsBackground = true;
-                th.Start(client);
+                Thread.Sleep(10000);
             }
         }
         void deal(TcpClient client)
