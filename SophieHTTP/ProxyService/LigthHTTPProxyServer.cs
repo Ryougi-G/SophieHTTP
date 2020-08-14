@@ -93,6 +93,7 @@ namespace SophieHTTP.ProxyService
             try
             {
                 TcpClient client = (TcpClient)obj;
+                Console.WriteLine(((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
                 HTTPRequest request;
                 using (BinaryReader breader = new BinaryReader(client.GetStream()))
                 {
@@ -128,23 +129,18 @@ namespace SophieHTTP.ProxyService
                     if (request.Method.MethodName == HTTPMethod.CONNECT.MethodName)
                     {
                         request.Url = new Uri("https://" + request.Url.OriginalString + "/");
-                        Console.WriteLine("ACP TO:" + request.Url.Host + " Method:" + request.Method.MethodName + " Port" + request.Url.Port);
-                        Console.WriteLine(client.Connected);
                         TcpClient remoteServer = new TcpClient();
                         try
                         {
 
                             remoteServer.Connect(Dns.GetHostEntry(request.Url.Host).AddressList[0], Convert.ToInt32(request.Url.Port));
-                            Console.WriteLine(client.Connected);
                             HTTPResponse resp = new HTTPResponse(HTTPVersion.HTTP11, HTTPStatusCode.ConnectionEstablished, new List<HTTPHeader>());
                             if (client.Connected)
                             {
-                                Console.WriteLine("CON ECT");
                                 client.GetStream().Write(resp.GetRawBytes(), 0, resp.GetRawBytes().Length);
                             }
                             else
                             {
-                                Console.WriteLine("Disposed");
                                 client.Dispose();
                                 return;
                             }
