@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace SophieHTTP.ProxyService
 {
-    public class LigthHTTPProxyServer
+    public class LightHTTPProxyServer
     {
         private int port;
         private IPAddress localAddress;
@@ -32,7 +32,7 @@ namespace SophieHTTP.ProxyService
                 return localAddress;
             }
         }
-        public LigthHTTPProxyServer(IPAddress Address,int PortToBind)
+        public LightHTTPProxyServer(IPAddress Address,int PortToBind)
         {
             this.port = PortToBind;
             this.localAddress = Address;

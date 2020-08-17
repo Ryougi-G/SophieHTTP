@@ -48,7 +48,7 @@
     <Compile Include="HTTPResolve\HTTPResponse.cs" />
     <Compile Include="HTTPResolve\HTTPUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyService\LigthHTTPProxyServer.cs" />
+    <Compile Include="ProxyService\LightHTTPProxyServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HTTPResolve\ClassDiagram2.cd" />

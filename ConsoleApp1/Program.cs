@@ -17,7 +17,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            LigthHTTPProxyServer server = new LigthHTTPProxyServer(IPAddress.Any, 11451);
+            LightHTTPProxyServer server = new LightHTTPProxyServer(IPAddress.Any, 11451);
             server.Start();
             while (true)
             {
