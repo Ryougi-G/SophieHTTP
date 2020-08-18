@@ -70,35 +70,8 @@ namespace SophieHTTP
 
                 foreach (string s in rawHeaders)
                 {
-                    string key = "", value = "";
-
-                    int i = 0;
-
-                    while (s[i] != ':')
-                    {
-                        if (s[i] != ' ')
-                            key += s[i];
-                        i++;
-                    }
-                    i++;
-
-                    bool flag = false;
-
-                    while (i < s.Length)
-                    {
-                        if (s[i] == ' ' && !flag)
-                        {
-
-                        }
-                        else
-                        {
-                            flag = true;
-                            value += s[i];
-                        }
-                        i++;
-                    }
-
-                    result.AddHeader(new CommonHeader(key, value));
+                    CommonHeader t = new CommonHeader(s);
+                    result.AddHeader(t);
                 }
                 return result;
             }
@@ -146,34 +119,8 @@ namespace SophieHTTP
 
                 foreach (string s in rawHeaders)
                 {
-                    string key = "", value = "";
-
-                    int i = 0;
-
-                    while (s[i] != ':')
-                    {
-                        if (s[i] != ' ')
-                            key += s[i];
-                        i++;
-                    }
-                    i++;
-
-                    bool flag = false;
-
-                    while (i < s.Length)
-                    {
-                        if (s[i] == ' ' && !flag)
-                        {
-
-                        }
-                        else
-                        {
-                            flag = true;
-                            value += s[i];
-                        }
-                        i++;
-                    }
-                    result.AddHeader(new CommonHeader(key, value));
+                    CommonHeader t = new CommonHeader(s);
+                    result.AddHeader(t);
                 }
 
                 return result;

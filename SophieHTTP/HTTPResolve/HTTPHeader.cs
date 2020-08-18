@@ -10,42 +10,15 @@ namespace SophieHTTP
     {
        public abstract class HTTPHeader
         {
-            protected string HeaderKey;
-            protected Object HeaderValue;
-            public HTTPHeader(string key, Object val)
-            {
-                HeaderKey = key;
-                HeaderValue = val;
+            public abstract string Key {
+                get; set;
             }
-            public HTTPHeader()
+            public abstract Object Value
             {
-                HeaderValue = null;
-                HeaderKey = null;
-            }
-            public virtual string Key
-            {
-                get
-                {
-                    return HeaderKey;
-                }
-                set
-                {
-                    HeaderKey = value;
-                }
-            }
-            public virtual Object Value
-            {
-                get
-                {
-                    return HeaderValue;
-                }
-                set
-                {
-                    HeaderValue = value;
-                }
+                get;set;
             }
             public abstract string GetValueString();
-            public abstract string getHeaderString();
+            public abstract string GetHeaderString();
         }
     }
     

@@ -96,7 +96,7 @@ namespace SophieHTTP
                 foreach (HTTPHeader header in Headers)
                 {
 
-                    result += header.getHeaderString() + "\r\n";
+                    result += header.GetHeaderString() + "\r\n";
 
                 }
                 result += "\r\n";

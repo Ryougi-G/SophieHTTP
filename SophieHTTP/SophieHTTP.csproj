@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HTTPResolve\CommonHeader.cs" />
+    <Compile Include="HTTPResolve\ConnectionHeader.cs" />
     <Compile Include="HTTPResolve\HTTPHeader.cs" />
     <Compile Include="HTTPResolve\HTTPRequest.cs" />
     <Compile Include="HTTPResolve\HTTPResolve.cs" />
