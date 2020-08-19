@@ -113,6 +113,20 @@ namespace SophieHTTP
             public static HTTPStatusCode UseProxy = new HTTPStatusCode(305, "UseProxy");
             public static HTTPStatusCode ConnectionEstablished = new HTTPStatusCode(200, "Connection established");
         }
+        public class KeyValuePair
+        {
+            public string Key;
+            public object Value;
+            public KeyValuePair(string key,object value)
+            {
+                Key = key;
+                this.Value = value;
+            }
+            public override string ToString()
+            {
+                return Key + ":" + Value;
+            }
+        }
     }
     
 }

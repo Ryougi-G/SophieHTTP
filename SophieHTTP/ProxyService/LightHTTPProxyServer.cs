@@ -189,6 +189,24 @@ namespace SophieHTTP.ProxyService
                         }
 
                     }
+                    else
+                    {
+                        if (request.Version==HTTPVersion.HTTP09||request.Version==HTTPVersion.HTTP10)
+                        {
+                            if (client.Connected)
+                            {
+                                HTTPResponse resp = new HTTPResponse(request.Version, HTTPStatusCode.HttpVersionNotSupported, new List<HTTPHeader>());
+                                resp.Content = Encoding.UTF8.GetBytes("死妈玩意赶紧滚回去升级你的浏览器，别让我看到你个懒狗还在用低于HTTP1.1版本的浏览器");
+                                resp.AddHeader(new CommonHeader("Content-Type: text/html; charset=utf-8"));
+                                client.GetStream().Write(resp.GetRawBytes(), 0, resp.GetRawBytes().Length);
+                            }
+                            else
+                            {
+                                client.Dispose();
+                                return;
+                            }
+                        }
+                    }
                 }
             }
             catch(Exception ex)
