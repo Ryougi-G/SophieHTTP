@@ -196,15 +196,63 @@ namespace SophieHTTP.ProxyService
                             if (client.Connected)
                             {
                                 HTTPResponse resp = new HTTPResponse(request.Version, HTTPStatusCode.HttpVersionNotSupported, new List<HTTPHeader>());
-                                resp.Content = Encoding.UTF8.GetBytes("死妈玩意赶紧滚回去升级你的浏览器，别让我看到你个懒狗还在用低于HTTP1.1版本的浏览器");
+                                resp.Content = Encoding.UTF8.GetBytes("请升级到支持HTTP1.1的浏览器");
                                 resp.AddHeader(new CommonHeader("Content-Type: text/html; charset=utf-8"));
                                 client.GetStream().Write(resp.GetRawBytes(), 0, resp.GetRawBytes().Length);
+                                return;
                             }
                             else
                             {
                                 client.Dispose();
                                 return;
                             }
+                        }
+                        string host;
+                        int port;
+                        try
+                        {
+                            host = request.Url.Host;
+                            port = request.Url.Port;
+                        }catch(Exception ex)
+                        {
+                            if (request.FindHeader("Host") != null)
+                            {
+                                host = (string)request.FindHeader("Host").Value;
+                                port = 80;
+                            }
+                            else
+                            {
+                                HTTPResponse resp = new HTTPResponse(request.Version, HTTPStatusCode.BadRequest, new List<HTTPHeader>());
+                                resp.Content = Encoding.UTF8.GetBytes("错误的请求");
+                                resp.AddHeader(new CommonHeader("Content-Type: text/html; charset=utf-8"));
+                                client.GetStream().Write(resp.GetRawBytes(), 0, resp.GetRawBytes().Length);
+                                return;
+                            }
+                        }
+                        if (request.FindHeader("Connection") == null)
+                        {
+                            request.AddHeader(new ConnectionHeader("Connection:close"));
+                        }
+                        if (((ConnectionHeader)request.FindHeader("Connection")).FindValue("close") == null)
+                        {
+                            ConnectionHeader ch = (ConnectionHeader)request.FindHeader("Connection");
+                            ch.Value = new List<string>();
+                            ((List<string>)ch.Value).Add("close");
+                        }
+                        try
+                        {
+                            IPAddress remoteAddress = Dns.GetHostEntry(host).AddressList[0];
+                            TcpClient remoteServer = new TcpClient(new IPEndPoint(remoteAddress,port));
+                            remoteServer.GetStream().Write(request.GetRawBytes(), 0, request.GetRawBytes().Length);
+                            
+
+                        }
+                        catch(SocketException ex)
+                        {
+                            HTTPResponse resp = new HTTPResponse(HTTPVersion.HTTP11, HTTPStatusCode.BadGateway, new List<HTTPHeader>());
+                            resp.Content = Encoding.Unicode.GetBytes(ex.Message);
+                            client.GetStream().Write(resp.GetRawBytes(), 0, resp.GetRawBytes().Length);
+                            client.Dispose();
                         }
                     }
                 }
